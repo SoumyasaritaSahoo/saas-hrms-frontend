@@ -1,0 +1,280 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
+
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════════
+   Brand Theme
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Brand Colors ─────────────────────────────────────────────── */
+  --color-brand: #8B5CF6;
+  --color-brand-dark: #6D28D9;
+
+  /* ── Neutral System ───────────────────────────────────────────── */
+  --white: #ffffff;
+
+  --gray-50: #f8f9fc;
+  --gray-100: #eef0f6;
+  --gray-200: #dde1ed;
+  --gray-300: #c4cad9;
+  --gray-400: #9aa3b8;
+  --gray-500: #6b7591;
+  --gray-600: #4d5670;
+  --gray-700: #363d52;
+  --gray-800: #1f2436;
+  --gray-900: #10131f;
+
+  /* ── Layout ───────────────────────────────────────────────────── */
+  --surface-bg: var(--gray-50);
+  --surface-paper: var(--white);
+  --surface-border: var(--gray-200);
+
+  /* ── Misc ─────────────────────────────────────────────────────── */
+  --color-back-link: #64748B;
+
+  /* ── Typography ───────────────────────────────────────────────── */
+  --font-sans:
+    "Plus Jakarta Sans",
+    "Inter",
+    sans-serif;
+
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-600);
+  --text-muted: var(--gray-500);
+
+  --typography-strong: #1a2332;
+  --typography-primary: #2d3f55;
+  --typography-secondary: #6b7f96;
+  --typography-muted: #94a8bc;
+  --typography-faint: #b0c0ce;
+
+  /* ── Radius ───────────────────────────────────────────────────── */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  /* ── Shadows ──────────────────────────────────────────────────── */
+  --shadow-sm: 0 1px 2px rgba(16, 19, 31, 0.06);
+  --shadow-md: 0 4px 12px rgba(16, 19, 31, 0.08);
+
+  /* ── Transition ──────────────────────────────────────────────── */
+  --transition: 0.2s ease;
+
+  /* ── Tailwind Bridge ─────────────────────────────────────────── */
+  --background: var(--surface-bg);
+  --foreground: var(--text-primary);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   DARK MODE
+   ────────────────────────────────────────────────────────────────── */
+[data-color-mode="dark"] {
+  --surface-bg: #0f172a;
+  --surface-paper: #1e293b;
+  --surface-border: rgba(255, 255, 255, 0.08);
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --color-back-link:#64748B;;
+
+  --gray-50: #1e293b;
+  --gray-100: #1e293b;
+  --gray-200: #334155;
+  --gray-300: #475569;
+  --gray-400: #64748b;
+  --gray-500: #94a3b8;
+  --gray-600: #cbd5e1;
+  --gray-700: #e2e8f0;
+  --gray-800: #f1f5f9;
+  --gray-900: #f8fafc;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+  --typography-strong: #e8edf2;
+  --typography-primary: #c9d4e0;
+  --typography-secondary: #8899aa;
+  --typography-muted: #5c6e80;
+  --typography-faint: #44586a;
+}
+
+[data-color-mode="dark"] a {
+  color: var(--color-brand);
+}
+
+[data-color-mode="dark"] a:hover {
+  color: var(--color-brand-dark);
+}
+
+[data-color-mode="dark"] .card {
+  background: var(--surface-paper);
+  border-color: var(--surface-border);
+}
+
+[data-color-mode="dark"] ::-webkit-scrollbar-thumb {
+  background: var(--gray-600);
+}
+
+[data-color-mode="dark"] .divider {
+  border-color: var(--surface-border);
+}
+
+[data-color-mode="dark"] input,
+[data-color-mode="dark"] textarea,
+[data-color-mode="dark"] select {
+  color-scheme: dark;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   RESET
+   ────────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+
+  background: var(--surface-bg);
+  color: var(--text-primary);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   TYPOGRAPHY
+   ────────────────────────────────────────────────────────────────── */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--color-brand);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--color-brand-dark);
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   BUTTON / ACTION COLORS
+   ────────────────────────────────────────────────────────────────── */
+.text-primary {
+  color: var(--color-brand);
+}
+
+.bg-primary {
+  background: var(--color-brand);
+}
+
+.border-primary {
+  border-color: var(--color-brand);
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   CARD
+   ────────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface-paper);
+
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-sm);
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   INPUTS
+   ────────────────────────────────────────────────────────────────── */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   FOCUS
+   ────────────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   SCROLLBAR
+   ────────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: 999px;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   UTILITIES
+   ────────────────────────────────────────────────────────────────── */
+.text-muted {
+  color: var(--text-muted);
+}
+
+.divider {
+  border-top: 1px solid var(--surface-border);
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
