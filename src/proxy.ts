@@ -74,6 +74,7 @@ export default async function middleware(request: NextRequest) {
   const publicRoutes = [
     paths.notFound,
     paths.notAuthorized,
+    paths.auth.verifyEmail,
   ];
 
   const isPublicRoute = publicRoutes.some((route) => pathname.endsWith(route));

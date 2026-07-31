@@ -26,6 +26,9 @@ export const LOGIN = () => UrlParamsReplace("/app/login");
 export const LOGOUT = () => UrlParamsReplace("/app/logout");
 export const FORGOT_PASSWORD = () => UrlParamsReplace("/app/forgot-password");
 export const RESET_PASSWORD = () => UrlParamsReplace("/app/reset-password");
+export const VERIFY_EMAIL = () => UrlParamsReplace("/app/verify-email");
+export const RESEND_VERIFICATION = () =>
+  UrlParamsReplace("/app/resend-verification");
 
 export const GET_PROFILE = () => UrlParamsReplace("/app/profile");
 export const UPDATE_PROFILE = () => UrlParamsReplace("/app/profile");

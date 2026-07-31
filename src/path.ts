@@ -12,6 +12,7 @@ export const paths = {
     login: "/login",
     forgotPassword: "/forgot-password",
     resetPassword: "/reset-password",
+    verifyEmail: "/verify-email",
     onboarding: "/onboarding",
     onboardingCompanyExists: "/onboarding/company-exists",
     onboardingAccountExists: "/onboarding/account-exists",

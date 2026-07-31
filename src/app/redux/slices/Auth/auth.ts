@@ -7,6 +7,8 @@ import {
   Check_User_Exists,
   Forgot_Password,
   Reset_Password,
+  Verify_Email,
+  Resend_Verification,
   Get_Profile,
   Update_Profile,
 } from "../../../../../services/Auth/auth.service";
@@ -282,6 +284,49 @@ export function ResetPassword(data: { token: string; password: string }) {
   };
 }
 
+
+export function VerifyEmail(data: { token: string }) {
+  return async (dispatch: any) => {
+    dispatch(startLoading());
+
+    try {
+      const response: any = await Verify_Email(data);
+
+      if (response?.status) {
+        await dispatch(GetProfile());
+        dispatch(forgotPasswordSuccess());
+      } else {
+        dispatch(hasError(response?.message));
+      }
+
+      return response;
+    } catch (error: any) {
+      dispatch(hasError(error));
+      return error;
+    }
+  };
+}
+
+export function ResendVerification(data: { email: string }) {
+  return async (dispatch: any) => {
+    dispatch(startLoading());
+
+    try {
+      const response: any = await Resend_Verification(data);
+
+      if (response?.status) {
+        dispatch(forgotPasswordSuccess());
+      } else {
+        dispatch(hasError(response?.message));
+      }
+
+      return response;
+    } catch (error: any) {
+      dispatch(hasError(error));
+      return error;
+    }
+  };
+}
 
 export function RefreshPermissions() {
   return async (dispatch: any) => {

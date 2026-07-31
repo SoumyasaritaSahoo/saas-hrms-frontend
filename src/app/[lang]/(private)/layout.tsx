@@ -17,6 +17,7 @@ import type { RootState, AppDispatch } from "@/app/redux/store";
 import { TranslationProvider } from "@/contexts/TranslationContext";
 import { getLocalizedPath } from "@/path";
 import { useTranslation } from "@/contexts/TranslationContext";
+import EmailNotVerifiedView from "@/views/auth/EmailNotVerifiedView";
 
 function PrivateGuard({ children }: { children: React.ReactNode }) {
   const dispatch = useDispatch<AppDispatch>();
@@ -35,6 +36,13 @@ function PrivateGuard({ children }: { children: React.ReactNode }) {
   }, [user, router, lang]);
 
   if (!user) return null;
+
+  // Hard gate: block the entire private area until the user has verified
+  // their email — covers both the immediate post-signup redirect and any
+  // later login attempt while still unverified.
+  if (!(user as any).email_verified_at) {
+    return <EmailNotVerifiedView email={(user as any).email} />;
+  }
 
   return <>{children}</>;
 }

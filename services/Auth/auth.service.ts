@@ -7,6 +7,8 @@ import {
   GET_USER_ROLES,
   FORGOT_PASSWORD,
   RESET_PASSWORD,
+  VERIFY_EMAIL,
+  RESEND_VERIFICATION,
   GET_PROFILE,
   UPDATE_PROFILE,
 } from "../url.services";
@@ -39,6 +41,15 @@ export const Forgot_Password = (data: { email: string }) => {
 export const Reset_Password = (data: { token: string; password: string }) => {
   return HttpService.postWithAuthToken(RESET_PASSWORD(), data);
 };
+
+export const Verify_Email = (data: { token: string }) => {
+  return HttpService.postWithAuthToken(VERIFY_EMAIL(), data);
+};
+
+export const Resend_Verification = (data: { email: string }) => {
+  return HttpService.postWithAuthToken(RESEND_VERIFICATION(), data);
+};
+
 export const Get_Profile = () => {
   return HttpService.getWithAuthToken(GET_PROFILE());
 };
