@@ -22,7 +22,17 @@ const encryptor = encryptTransform({
   secretKey: process.env.NEXT_PUBLIC_REDUX_SECRET,
 
   onError(error) {
-    console.error(error);
+    // A decrypt failure means the persisted blob in localStorage predates
+    // the current NEXT_PUBLIC_REDUX_SECRET (or is otherwise corrupted) and
+    // can never be recovered. Purge it so the next load starts clean
+    // instead of getting stuck. Logged via `warn`, not `error` — Next.js's
+    // dev overlay treats `console.error` as a page-blocking crash even
+    // though this case is already handled and non-fatal.
+    console.warn("Discarding unreadable persisted redux state:", error);
+
+    if (typeof window !== "undefined") {
+      window.localStorage.removeItem(`persist:${rootPersistConfig.key}`);
+    }
   },
 });
 

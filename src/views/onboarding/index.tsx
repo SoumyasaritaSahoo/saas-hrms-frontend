@@ -88,6 +88,9 @@ export default function OnboardingView() {
       } else if (result?.payload?.error_code === "COMPANY_ALREADY_EXISTS") {
         clearOnboardingCookies();
         router.push(getLocalizedPath(paths.auth.onboardingCompanyExists, lang));
+      } else if (result?.payload?.error_code === "ACCOUNT_ALREADY_EXISTS") {
+        clearOnboardingCookies();
+        router.push(getLocalizedPath(paths.auth.onboardingAccountExists, lang));
       } else {
         toast.error(result?.payload?.message || trans.registrationFailed);
       }

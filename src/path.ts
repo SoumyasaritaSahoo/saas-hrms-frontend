@@ -14,6 +14,7 @@ export const paths = {
     resetPassword: "/reset-password",
     onboarding: "/onboarding",
     onboardingCompanyExists: "/onboarding/company-exists",
+    onboardingAccountExists: "/onboarding/account-exists",
   },
 
   dashboard: "/dashboard",

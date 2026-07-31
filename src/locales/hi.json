@@ -493,6 +493,7 @@
   "submitReview": "समीक्षा सबमिट करें",
   "companyExists": "आपकी कंपनी पहले से {appName} पर है।",
   "contactSales": "बिक्री से संपर्क करें",
+  "accountExists": "आपका खाता पहले से {appName} पर मौजूद है।",
   "yearly": "वार्षिक",
   "monthly": "मासिक",
   "quarterly": "त्रैमासिक",

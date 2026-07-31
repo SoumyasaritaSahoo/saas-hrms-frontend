@@ -70,7 +70,7 @@ export default async function middleware(request: NextRequest) {
     : false;
 
   // ── Route categories ──
-  const guestRoutes = [paths.auth.login, paths.auth.forgotPassword, paths.auth.resetPassword, paths.auth.onboarding, paths.auth.onboardingCompanyExists];
+  const guestRoutes = [paths.auth.login, paths.auth.forgotPassword, paths.auth.resetPassword, paths.auth.onboarding, paths.auth.onboardingCompanyExists, paths.auth.onboardingAccountExists];
   const publicRoutes = [
     paths.notFound,
     paths.notAuthorized,

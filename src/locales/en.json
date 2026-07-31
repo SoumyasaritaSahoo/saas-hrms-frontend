@@ -514,6 +514,7 @@
   "submitReview": "Submit Review",
   "companyExists": "Your company is already on {appName}.",
   "contactSales": "Contact Sales",
+  "accountExists": "You already have an account on {appName}.",
   "yearly": "Yearly",
   "monthly": "Monthly",
   "quarterly": "Quarterly",
