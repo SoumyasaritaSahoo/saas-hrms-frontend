@@ -8,7 +8,7 @@ import { Controller, useForm } from "react-hook-form";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useTheme } from "@mui/material/styles";
+import { useTheme, alpha } from "@mui/material/styles";
 
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffOutlined";
@@ -190,11 +190,26 @@ export default function LoginForm() {
               gap: 0.75,
               cursor: isSubmitting ? "default" : "pointer",
               opacity: isSubmitting ? 0.85 : 1,
-              transition: "background-color 0.15s ease",
+              boxShadow: `0 4px 14px ${alpha(theme.palette.primary.main, 0.28)}`,
+              transition:
+                "background-color .2s ease, transform .15s ease, box-shadow .2s ease",
+              "& .signin-arrow": {
+                transition: "transform .25s ease",
+              },
               "&:hover": {
                 bgcolor: isSubmitting
                   ? theme.palette.primary.main
                   : theme.palette.primary.dark,
+                transform: isSubmitting ? "none" : "translateY(-2px)",
+                boxShadow: isSubmitting
+                  ? `0 4px 14px ${alpha(theme.palette.primary.main, 0.28)}`
+                  : `0 10px 24px ${alpha(theme.palette.primary.main, 0.38)}`,
+                "& .signin-arrow": {
+                  transform: "translateX(4px)",
+                },
+              },
+              "&:active": {
+                transform: isSubmitting ? "none" : "translateY(0) scale(0.98)",
               },
             }}
           >
@@ -206,7 +221,10 @@ export default function LoginForm() {
             ) : (
               <>
                 {trans.signIn ?? "Sign in"}
-                <ArrowForwardRoundedIcon sx={{ fontSize: 18, color: "#fff" }} />
+                <ArrowForwardRoundedIcon
+                  className="signin-arrow"
+                  sx={{ fontSize: 18, color: "#fff" }}
+                />
               </>
             )}
           </Box>

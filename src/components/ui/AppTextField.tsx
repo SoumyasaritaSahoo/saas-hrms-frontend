@@ -48,15 +48,22 @@ export default function AppTextField({
           "& .MuiOutlinedInput-root": {
             bgcolor: "background.paper",
             color: "text.primary",
+            transition: "box-shadow .2s ease, transform .2s ease",
 
             "& fieldset": {
               borderColor: "divider",
+              transition: "border-color .2s ease",
             },
             "&:hover fieldset": {
               borderColor: "primary.main",
             },
+            "&.Mui-focused": {
+              boxShadow: (theme) =>
+                `0 0 0 3px ${theme.palette.mode === "dark" ? "rgba(139,92,246,0.25)" : "rgba(99,102,241,0.14)"}`,
+            },
             "&.Mui-focused fieldset": {
               borderColor: "primary.main",
+              borderWidth: "1.5px",
             },
           },
 

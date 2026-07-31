@@ -254,11 +254,26 @@ export default function SetPasswordForm() {
             gap: 0.75,
             cursor: loading ? "default" : "pointer",
             opacity: loading ? 0.85 : 1,
-            transition: "background-color 0.15s ease",
+            boxShadow: `0 4px 14px ${alpha(theme.palette.primary.main, 0.28)}`,
+            transition:
+              "background-color .2s ease, transform .15s ease, box-shadow .2s ease",
+            "& .setpass-arrow": {
+              transition: "transform .25s ease",
+            },
             "&:hover": {
               bgcolor: loading
                 ? theme.palette.primary.main
                 : theme.palette.primary.dark,
+              transform: loading ? "none" : "translateY(-2px)",
+              boxShadow: loading
+                ? `0 4px 14px ${alpha(theme.palette.primary.main, 0.28)}`
+                : `0 10px 24px ${alpha(theme.palette.primary.main, 0.38)}`,
+              "& .setpass-arrow": {
+                transform: "translateX(4px)",
+              },
+            },
+            "&:active": {
+              transform: loading ? "none" : "translateY(0) scale(0.98)",
             },
           }}
         >
@@ -270,7 +285,10 @@ export default function SetPasswordForm() {
           ) : (
             <>
               {trans.setPasswordUpdate}
-              <ArrowForwardRoundedIcon sx={{ fontSize: 18, color: "#fff" }} />
+              <ArrowForwardRoundedIcon
+                className="setpass-arrow"
+                sx={{ fontSize: 18, color: "#fff" }}
+              />
             </>
           )}
         </Box>

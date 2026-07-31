@@ -91,6 +91,7 @@ export default function ForgotPasswordForm() {
           textAlign: "center",
         }}>
         <Box
+          className="animate-fade-in-up"
           sx={{
             width: 88,
             height: 88,
@@ -100,6 +101,7 @@ export default function ForgotPasswordForm() {
             alignItems: "center",
             justifyContent: "center",
             mb: 4,
+            "--delay": "0s",
           }}>
           <ForwardToInboxOutlinedIcon
             sx={{
@@ -112,24 +114,28 @@ export default function ForgotPasswordForm() {
 
         <AppTypography
           variant="h2"
-          sx={{ fontWeight: 700, color: "text.primary", lineHeight: "28px" }}>
+          className="animate-fade-in-up"
+          sx={{ fontWeight: 700, color: "text.primary", lineHeight: "28px", "--delay": "0.08s" }}>
           {trans.forgotCheckEmail}
         </AppTypography>
 
         <AppTypography
           variant="body2"
-          sx={{ mt: 3, mb: 3.75, color: "text.secondary", maxWidth: 340 }}>
+          className="animate-fade-in-up"
+          sx={{ mt: 3, mb: 3.75, color: "text.secondary", maxWidth: 340, "--delay": "0.14s" }}>
           {trans.forgotSentPrefix ??
             "We've sent a password reset link to your registered email address."}
         </AppTypography>
 
         <Box
+          className="animate-fade-in-up"
           sx={{
             px: 2,
             py: 0.75,
             borderRadius: "999px",
             bgcolor: alpha(theme.palette.primary.main, 0.08),
             mb: 3.75,
+            "--delay": "0.2s",
           }}>
           <AppTypography
             sx={{
@@ -146,6 +152,7 @@ export default function ForgotPasswordForm() {
           type="button"
           onClick={() => window.open(`mailto:${email}`, "_blank")}
           disabled={loading}
+          className="animate-fade-in-up"
           sx={{
             width: "100%",
             height: 48,
@@ -161,12 +168,22 @@ export default function ForgotPasswordForm() {
             gap: 1,
             cursor: loading ? "default" : "pointer",
             opacity: loading ? 0.85 : 1,
-            transition: "background-color 0.15s ease",
+            boxShadow: `0 4px 14px ${alpha(theme.palette.primary.main, 0.28)}`,
+            transition:
+              "background-color .2s ease, transform .15s ease, box-shadow .2s ease",
+            "--delay": "0.26s",
             "&:hover": {
               bgcolor:
                 loading ?
                   theme.palette.primary.main
                 : theme.palette.primary.dark,
+              transform: loading ? "none" : "translateY(-2px)",
+              boxShadow: loading
+                ? `0 4px 14px ${alpha(theme.palette.primary.main, 0.28)}`
+                : `0 10px 24px ${alpha(theme.palette.primary.main, 0.38)}`,
+            },
+            "&:active": {
+              transform: loading ? "none" : "translateY(0) scale(0.98)",
             },
           }}>
           {trans.forgotOpenEmailApp ?? "Open Email App"}
@@ -294,12 +311,21 @@ export default function ForgotPasswordForm() {
             gap: 0.75,
             cursor: loading ? "default" : "pointer",
             opacity: loading ? 0.85 : 1,
-            transition: "background-color 0.15s ease",
+            boxShadow: `0 4px 14px ${alpha(theme.palette.primary.main, 0.28)}`,
+            transition:
+              "background-color .2s ease, transform .15s ease, box-shadow .2s ease",
             "&:hover": {
               bgcolor:
                 loading ?
                   theme.palette.primary.main
                 : theme.palette.primary.dark,
+              transform: loading ? "none" : "translateY(-2px)",
+              boxShadow: loading
+                ? `0 4px 14px ${alpha(theme.palette.primary.main, 0.28)}`
+                : `0 10px 24px ${alpha(theme.palette.primary.main, 0.38)}`,
+            },
+            "&:active": {
+              transform: loading ? "none" : "translateY(0) scale(0.98)",
             },
           }}>
           {loading ?

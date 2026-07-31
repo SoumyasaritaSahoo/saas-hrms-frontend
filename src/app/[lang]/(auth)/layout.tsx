@@ -2,6 +2,7 @@
 
 import { useTheme, alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
+import { usePathname } from "next/navigation";
 
 import AppLogo from "@/components/ui/AppLogo";
 import { TranslationProvider } from "@/contexts/TranslationContext";
@@ -37,6 +38,7 @@ const cards = [
 function AuthContent({ children }: { children: React.ReactNode }) {
   const theme = useTheme();
   const isDark = theme.palette.mode === "dark";
+  const pathname = usePathname();
 
   return (
     <Box
@@ -56,6 +58,7 @@ function AuthContent({ children }: { children: React.ReactNode }) {
         }}>
         {/* Top-left decorative glow */}
         <Box
+          className="animate-float-blob"
           sx={{
             position: "absolute",
             top: 30,
@@ -65,6 +68,7 @@ function AuthContent({ children }: { children: React.ReactNode }) {
             borderRadius: "9999px",
             opacity: 0.2,
             pointerEvents: "none",
+            "--delay": "0s",
             background:
               isDark ?
                 "radial-gradient(70.71% 70.71% at 50% 50%, #8B5CF6 0%, rgba(0,0,0,0) 100%)"
@@ -74,6 +78,7 @@ function AuthContent({ children }: { children: React.ReactNode }) {
 
         {/* Bottom-right decorative glow */}
         <Box
+          className="animate-float-blob"
           sx={{
             position: "absolute",
             bottom: -10,
@@ -83,6 +88,8 @@ function AuthContent({ children }: { children: React.ReactNode }) {
             borderRadius: "9999px",
             opacity: 0.15,
             pointerEvents: "none",
+            "--delay": "-3s",
+            animationDuration: "13s",
             background:
               isDark ?
                 "radial-gradient(70.71% 70.71% at 50% 50%, #F97316 0%, rgba(0,0,0,0) 100%)"
@@ -103,7 +110,9 @@ function AuthContent({ children }: { children: React.ReactNode }) {
             flexDirection: "column",
           }}>
           {/* Logo */}
-          <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
+          <Box
+            className="animate-fade-in-up"
+            sx={{ display: "flex", justifyContent: "flex-start", "--delay": "0s" }}>
             <AppLogo size="md" />
           </Box>
 
@@ -117,11 +126,13 @@ function AuthContent({ children }: { children: React.ReactNode }) {
             }}>
             {/* Heading */}
             <Box
+              className="animate-fade-in-up"
               sx={{
                 fontWeight: 700,
                 fontSize: 36,
                 lineHeight: "43.2px",
                 letterSpacing: 0,
+                "--delay": "0.1s",
               }}>
               <Box
                 component="span"
@@ -133,10 +144,11 @@ function AuthContent({ children }: { children: React.ReactNode }) {
               </Box>
               <Box
                 component="span"
+                className="animate-gradient-text"
                 sx={{
                   display: "block",
                   background:
-                    "linear-gradient(90deg, #6366F1 0%, #8B5CF6 100%)",
+                    "linear-gradient(90deg, #6366F1 0%, #8B5CF6 50%, #6366F1 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -147,6 +159,7 @@ function AuthContent({ children }: { children: React.ReactNode }) {
 
             {/* Subtitle */}
             <Box
+              className="animate-fade-in-up"
               sx={{
                 mt: "-8px",
                 fontWeight: 400,
@@ -154,6 +167,7 @@ function AuthContent({ children }: { children: React.ReactNode }) {
                 lineHeight: "22px",
                 color: isDark ? alpha(theme.palette.common.white, 0.65) : "#5B6B85",
                 maxWidth: 580,
+                "--delay": "0.2s",
               }}>
               Everything you need to manage, engage, and grow your workforce all
               in one place.
@@ -169,6 +183,7 @@ function AuthContent({ children }: { children: React.ReactNode }) {
               {cards.map((card, i) => (
                 <Box
                   key={i}
+                  className="animate-fade-in-up"
                   sx={{
                     minHeight: 180,
                     p: 2.5,
@@ -184,11 +199,22 @@ function AuthContent({ children }: { children: React.ReactNode }) {
                       isDark ?
                         "0 10px 25px rgba(0,0,0,.25)"
                       : "0px 10px 30px rgba(15,23,42,.08)",
-                    transition: "all .25s ease",
-
+                    transition: "transform .3s ease, box-shadow .3s ease",
+                    "--delay": `${0.3 + i * 0.08}s`,
+                    "&:hover": {
+                      transform: "translateY(-6px)",
+                      boxShadow:
+                        isDark ?
+                          "0 16px 34px rgba(0,0,0,.35)"
+                        : "0px 16px 38px rgba(15,23,42,.12)",
+                    },
+                    "&:hover .auth-card-icon": {
+                      transform: "scale(1.1) rotate(-4deg)",
+                    },
                   }}>
                   {/* Icon */}
                   <Box
+                    className="auth-card-icon"
                     sx={{
                       width: 40,
                       height: 40,
@@ -199,6 +225,7 @@ function AuthContent({ children }: { children: React.ReactNode }) {
                       bgcolor: alpha(theme.palette.primary.main, 0.14),
                       color: theme.palette.primary.main,
                       mb: 2.5,
+                      transition: "transform .3s ease",
                     }}>
                     {card.icon}
                   </Box>
@@ -256,11 +283,14 @@ function AuthContent({ children }: { children: React.ReactNode }) {
         </Box>
 
         <Box
+          key={pathname}
+          className="animate-fade-in-up"
           sx={{
             mt: { xs: 0, md: "185px" },
             mb: "auto",
             width: "100%",
             maxWidth: 448,
+            "--delay": "0.05s",
           }}>
           {children}
         </Box>
